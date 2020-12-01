@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 @Service
 public class PredictCurrencyByWeatherService {
-    private SimpleRegression model = null;
+    private final SimpleRegression model;
     private final WeatherService weatherService;
     private final CurrencyService currencyService;
 
@@ -19,6 +19,13 @@ public class PredictCurrencyByWeatherService {
     public PredictCurrencyByWeatherService(WeatherService weatherService, CurrencyService currencyService) {
         this.weatherService = weatherService;
         this.currencyService = currencyService;
+        model = new SimpleRegression();
+        fit();
+    }
+
+    public  double predict(){
+        WeatherData tomorrowForecast = weatherService.getForecastForTomorrow();
+        return predict(tomorrowForecast);
     }
 
     private void fit() {
@@ -49,15 +56,6 @@ public class PredictCurrencyByWeatherService {
     }
 
     private double predict(WeatherData weatherData){
-        if(model == null){
-            model = new SimpleRegression();
-            fit();
-        }
         return model.predict(weatherData.getAvgHumidity());
-    }
-
-    public  double predict(){
-        WeatherData tomorrowForecast = weatherService.getForecastForTomorrow();
-        return predict(tomorrowForecast);
     }
 }

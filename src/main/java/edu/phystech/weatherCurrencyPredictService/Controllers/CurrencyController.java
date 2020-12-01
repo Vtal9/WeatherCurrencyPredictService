@@ -16,7 +16,7 @@ public class CurrencyController {
         this.currencyService = currencyService;
     }
 
-    @GetMapping("/Currency-service")
+    @GetMapping("/currency-service")
     public List<Double> getCurrencyHistory(@RequestParam @NonNull int n) {
         return currencyService.getCurrencyData(n);
     }
