@@ -1,7 +1,7 @@
 package edu.phystech.weatherCurrencyPredictService.Services;
 
 
-import edu.phystech.weatherCurrencyPredictService.CurrencyData;
+import edu.phystech.weatherCurrencyPredictService.ValCurs;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,13 +21,13 @@ public class CurrencyService {
         List<Double> currencyList = new ArrayList<>(n);
         for (int i = 0; i < n; ++i) {
             LocalDate day = today.minusDays(i);
-            ResponseEntity<String> response = restTemplate.getForEntity(createRequestString(day), String.class);
+            ResponseEntity<ValCurs> response = restTemplate.getForEntity(createRequestString(day), ValCurs.class);
+            System.out.println(response.getBody().getValuteList().get(0).getValue());
             if (!response.hasBody()) {
                 currencyList.add(null);
             } else {
-                CurrencyData currencyData = new CurrencyData(response);
-                double currency = currencyData.asDouble();
-                currencyList.add(currency);
+
+                currencyList.add(response.getBody().getValute("Доллар США").getValue());
             }
         }
 
