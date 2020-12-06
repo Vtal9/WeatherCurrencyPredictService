@@ -2,7 +2,7 @@ package edu.phystech.weatherCurrencyPredictService.Controllers;
 
 
 import edu.phystech.weatherCurrencyPredictService.Services.WeatherService;
-import edu.phystech.weatherCurrencyPredictService.WeatherData;
+import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.WeatherData;
 import org.springframework.lang.Nullable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;

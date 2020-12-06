@@ -1,6 +1,6 @@
 package edu.phystech.weatherCurrencyPredictService.Services;
 
-import edu.phystech.weatherCurrencyPredictService.WeatherData;
+import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.WeatherData;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.springframework.stereotype.Service;
 

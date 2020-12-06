@@ -1,15 +1,26 @@
-package edu.phystech.weatherCurrencyPredictService;
+package edu.phystech.weatherCurrencyPredictService.DataBase.Entities;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class WeatherData {
-    private final double maxTemperature;
-    private final double minTemperature;
-    private final double avgTemperature;
-    private final int avgHumidity;
-    private final double maxWind;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
-    public WeatherData(double maxTemperature, double minTemperature, double avgTemperature, int avgHumidity, double maxWind) {
+@Entity
+@Table(name = "Weather")
+public class WeatherData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Date date;
+    private double maxTemperature;
+    private double minTemperature;
+    private double avgTemperature;
+    private int avgHumidity;
+    private double maxWind;
+
+    public WeatherData(Date date, double maxTemperature, double minTemperature, double avgTemperature, int avgHumidity, double maxWind) {
+        this.date = date;
         this.maxTemperature = maxTemperature;
         this.minTemperature = minTemperature;
         this.avgTemperature = avgTemperature;
@@ -17,7 +28,7 @@ public class WeatherData {
         this.maxWind = maxWind;
     }
 
-    public WeatherData(JsonNode json) {
+    public WeatherData(JsonNode json, Date date) {
         if (json.get("forecast") != null) {
             json = json.get("forecast").get("forecastday").get(0).get("day");
         }
@@ -26,19 +37,28 @@ public class WeatherData {
         avgTemperature = json.get("avgtemp_c").asDouble();
         avgHumidity = json.get("avghumidity").asInt();
         maxWind = json.get("maxwind_kph").asDouble();
+        this.date = date;
+    }
 
+    public WeatherData() {
     }
 
 
     @Override
     public String toString() {
         return "WeatherData{" +
-                "maxTemperature=" + maxTemperature +
+                "Id=" + id +
+                ", date=" + date +
+                ", maxTemperature=" + maxTemperature +
                 ", minTemperature=" + minTemperature +
                 ", avgTemperature=" + avgTemperature +
                 ", avgHumidity=" + avgHumidity +
                 ", maxWind=" + maxWind +
                 '}';
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     public double getMaxTemperature() {
