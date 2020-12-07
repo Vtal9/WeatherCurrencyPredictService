@@ -24,6 +24,7 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
+    @Validated
     @GetMapping("/weather-service")
     public List<WeatherData> getWeatherHistory(@RequestParam @Min(1) int n, @RequestParam @Nullable String city) {
         if (city == null) {

@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "657223a7-6358-4571-9223-6b2dc560551c",
+		"name": "WeatherCurrencyPredictService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Weather-service",
+			"item": [
+				{
+					"name": "GET weather in city",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75aa0f57-df2b-4d88-81ac-48f30d82ccf8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"The city is right\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    _.each(jsonData, (i) => {\r",
+									"        pm.expect(i.city).to.eql(\"Minsk\");\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response length is correct\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.eql(7);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/weather-service?n=7&city=Minsk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"weather-service"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "n",
+									"value": "7"
+								},
+								{
+									"key": "city",
+									"value": "Minsk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET weather without city parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10e40571-9494-4a5c-8058-72b2d3f23d1c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"The city is right\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    _.each(jsonData, (i) => {\r",
+									"        pm.expect(i.city).to.eql(\"Moscow\");\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response length is correct\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.eql(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/weather-service?n=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"weather-service"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET weather with wrong parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0f9fbd5-36ee-4758-8916-f6f77b036df0",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/weather-service?n=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"weather-service"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Currency-service",
+			"item": [
+				{
+					"name": "GET currency with right param",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4f64283b-fbac-4009-ab89-1a81c7e76245",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response length is correct\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.eql(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/currency-service?n=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"currency-service"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET currency with wrong param",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1b5bab4-c719-43ea-aceb-b7c195b4a265",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/currency-service?n=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"currency-service"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PredictCurrencyByWeatherService",
+			"item": [
+				{
+					"name": "Get prediction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2742ca7f-ce13-48ff-bf71-ab69e53d97a5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Predicted currency for tomorrow:\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/predict",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"predict"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -3,7 +3,6 @@ package edu.phystech.weatherCurrencyPredictService.DataBase.Entities;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,17 +17,19 @@ public class WeatherData {
     private double avgTemperature;
     private int avgHumidity;
     private double maxWind;
+    private String city;
 
-    public WeatherData(Date date, double maxTemperature, double minTemperature, double avgTemperature, int avgHumidity, double maxWind) {
+    public WeatherData(Date date, double maxTemperature, double minTemperature, double avgTemperature, int avgHumidity, double maxWind, String city) {
         this.date = date;
         this.maxTemperature = maxTemperature;
         this.minTemperature = minTemperature;
         this.avgTemperature = avgTemperature;
         this.avgHumidity = avgHumidity;
         this.maxWind = maxWind;
+        this.city = city;
     }
 
-    public WeatherData(JsonNode json, Date date) {
+    public WeatherData(JsonNode json, Date date, String city) {
         if (json.get("forecast") != null) {
             json = json.get("forecast").get("forecastday").get(0).get("day");
         }
@@ -38,6 +39,7 @@ public class WeatherData {
         avgHumidity = json.get("avghumidity").asInt();
         maxWind = json.get("maxwind_kph").asDouble();
         this.date = date;
+        this.city = city;
     }
 
     public WeatherData() {
@@ -47,13 +49,14 @@ public class WeatherData {
     @Override
     public String toString() {
         return "WeatherData{" +
-                "Id=" + id +
+                "id=" + id +
                 ", date=" + date +
                 ", maxTemperature=" + maxTemperature +
                 ", minTemperature=" + minTemperature +
                 ", avgTemperature=" + avgTemperature +
                 ", avgHumidity=" + avgHumidity +
                 ", maxWind=" + maxWind +
+                ", city='" + city + '\'' +
                 '}';
     }
 
@@ -79,5 +82,9 @@ public class WeatherData {
 
     public double getMaxWind() {
         return maxWind;
+    }
+
+    public String getCity() {
+        return city;
     }
 }

@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface WeatherRepository extends CrudRepository<WeatherData, Long> {
-    Optional<WeatherData> findByDate(Date date);
+    Optional<WeatherData> findByDateAndCity(Date date, String city);
 }

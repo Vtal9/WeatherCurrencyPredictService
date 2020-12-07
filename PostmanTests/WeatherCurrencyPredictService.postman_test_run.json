@@ -1,0 +1,240 @@
+{
+	"id": "69bc8a30-0acc-469e-8475-ed7ab5cabeef",
+	"name": "WeatherCurrencyPredictService",
+	"timestamp": "2020-12-07T14:51:11.329Z",
+	"collection_id": "657223a7-6358-4571-9223-6b2dc560551c",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 12,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "dfbbcbc4-b9b5-44d1-ae2d-90a3d5c1b657",
+			"name": "GET weather in city",
+			"url": "http://localhost:8080/weather-service?n=7&city=Minsk",
+			"time": 26,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The city is right": true,
+				"Response length is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The city is right": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response length is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The city is right": true,
+					"Response length is correct": true
+				}
+			]
+		},
+		{
+			"id": "5c9680e6-9116-4f96-a34f-1b0511a862d9",
+			"name": "GET weather without city parameter",
+			"url": "http://localhost:8080/weather-service?n=3",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The city is right": true,
+				"Response length is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The city is right": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response length is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The city is right": true,
+					"Response length is correct": true
+				}
+			]
+		},
+		{
+			"id": "a2f43ca3-13f3-4823-bc7c-872ebfc51f43",
+			"name": "GET weather with wrong parameter",
+			"url": "http://localhost:8080/weather-service?n=0",
+			"time": 15,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 500": true
+			},
+			"testPassFailCounts": {
+				"Status code is 500": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status code is 500": true
+				}
+			]
+		},
+		{
+			"id": "7b0462ba-3740-4c04-b6e6-335dc84b04f7",
+			"name": "GET currency with right param",
+			"url": "http://localhost:8080/currency-service?n=3",
+			"time": 268,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response length is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response length is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				268
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response length is correct": true
+				}
+			]
+		},
+		{
+			"id": "576b7331-a048-44e3-a7a7-ebb8b8e191bd",
+			"name": "GET currency with wrong param",
+			"url": "http://localhost:8080/currency-service?n=-1",
+			"time": 12,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 500": true
+			},
+			"testPassFailCounts": {
+				"Status code is 500": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status code is 500": true
+				}
+			]
+		},
+		{
+			"id": "99b13041-466f-4acc-8325-12ce8f1ebe53",
+			"name": "Get prediction",
+			"url": "http://localhost:8080/predict",
+			"time": 57,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				57
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 394,
+	"collection": {
+		"requests": [
+			{
+				"id": "dfbbcbc4-b9b5-44d1-ae2d-90a3d5c1b657",
+				"method": "GET"
+			},
+			{
+				"id": "5c9680e6-9116-4f96-a34f-1b0511a862d9",
+				"method": "GET"
+			},
+			{
+				"id": "a2f43ca3-13f3-4823-bc7c-872ebfc51f43",
+				"method": "GET"
+			},
+			{
+				"id": "7b0462ba-3740-4c04-b6e6-335dc84b04f7",
+				"method": "GET"
+			},
+			{
+				"id": "576b7331-a048-44e3-a7a7-ebb8b8e191bd",
+				"method": "GET"
+			},
+			{
+				"id": "99b13041-466f-4acc-8325-12ce8f1ebe53",
+				"method": "GET"
+			}
+		]
+	}
+}

@@ -55,12 +55,12 @@ public class WeatherService {
         for (int i = 0; i < n; ++i) {
             LocalDate day = today.minusDays(i);
 
-            Optional<WeatherData> weatherData = weatherRepository.findByDate(LocalDateToDate(day));
+            Optional<WeatherData> weatherData = weatherRepository.findByDateAndCity(LocalDateToDate(day), city);
             if (weatherData.isPresent()) {
                 weatherList.add(weatherData.get());
             } else {
                 ResponseEntity<String> response = restTemplate.getForEntity(createRequestString(day, city), String.class);
-                WeatherData weather = parseWeatherData(response, LocalDateToDate(day));
+                WeatherData weather = parseWeatherData(response, LocalDateToDate(day), city);
                 weatherList.add(weather);
                 weatherRepository.save(weather);
             }
@@ -68,14 +68,14 @@ public class WeatherService {
         return weatherList;
     }
 
-    private WeatherData parseWeatherData(ResponseEntity<String> response, Date date) {
+    private WeatherData parseWeatherData(ResponseEntity<String> response, Date date, String city) {
         JsonNode json;
         try {
             json = mapper.readTree(response.getBody());
         } catch (JsonProcessingException e) {
             return null;
         }
-        return new WeatherData(json, date);
+        return new WeatherData(json, date, city);
     }
 
     private String createRequestString(LocalDate date, String city) {
@@ -97,7 +97,7 @@ public class WeatherService {
 
     public WeatherData getForecastData(String city) {
         ResponseEntity<String> response = restTemplate.getForEntity(createForecastRequestString(city), String.class);
-        return parseWeatherData(response, LocalDateToDate(LocalDate.now().plusDays(1)));
+        return parseWeatherData(response, LocalDateToDate(LocalDate.now().plusDays(1)), city);
     }
 
     private Date LocalDateToDate(LocalDate date){
