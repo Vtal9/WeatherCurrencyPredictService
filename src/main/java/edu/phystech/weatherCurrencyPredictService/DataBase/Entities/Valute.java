@@ -1,57 +1,64 @@
-package edu.phystech.weatherCurrencyPredictService;
+package edu.phystech.weatherCurrencyPredictService.DataBase.Entities;
 
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Entity
+@Table(name = "Valute")
 @JacksonXmlRootElement(localName = "Valute")
 public class Valute implements Serializable {
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @JacksonXmlProperty(localName = "NumCode")
-    private String NumCode;
+    private String numCode;
     @JacksonXmlProperty(localName = "CharCode")
-    private String CharCode;
+    private String charCode;
     @JacksonXmlProperty(localName = "Nominal")
-    private int Nominal;
+    private int nominal;
     @JacksonXmlProperty(localName = "Name")
-    private String Name;
+    private String name;
     @JacksonXmlProperty(localName = "Value")
-    private String Value;
+    private String value;
 
     public Valute(String numCode, String charCode, int nominal, String name, String value) {
-        this.NumCode = numCode;
-        this.CharCode = charCode;
-        this.Nominal = nominal;
-        this.Name = name;
-        this.Value = value;
+        this.numCode = numCode;
+        this.charCode = charCode;
+        this.nominal = nominal;
+        this.name = name;
+        this.value = value;
     }
 
     public String getNumCode() {
-        return NumCode;
+        return numCode;
     }
 
     public String getCharCode() {
-        return CharCode;
+        return charCode;
     }
 
     public int getNominal() {
-        return Nominal;
+        return nominal;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public double getValue() {
         Pattern formatToDoublePattern = Pattern.compile(",");
-        Matcher formatToDoubleMatcher = formatToDoublePattern.matcher(Value);
+        Matcher formatToDoubleMatcher = formatToDoublePattern.matcher(value);
         return Double.parseDouble(formatToDoubleMatcher.replaceFirst("."));
     }
 
-    public Valute(){
+    public Valute() {
     }
 
 }
