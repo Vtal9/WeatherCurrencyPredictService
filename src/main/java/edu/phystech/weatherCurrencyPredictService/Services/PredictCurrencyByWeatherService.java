@@ -4,6 +4,7 @@ import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.WeatherData;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -52,7 +53,11 @@ public class PredictCurrencyByWeatherService {
             ys[i] = currencyList.get(indexes.get(i));
             xs[i] = weatherDataList.get(indexes.get(i)).getAvgTemperature();
         }
-        return List.of(xs, ys);
+        List<double[]> res = new ArrayList<>(2);
+        res.add(xs);
+        res.add(ys);
+        return res;
+//        return List.of(xs, ys);
     }
 
     private double predict(WeatherData weatherData){
