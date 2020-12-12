@@ -15,10 +15,11 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.reportPath>/target/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
 
     <dependencies>
