@@ -10,7 +10,7 @@ class ValuteTest {
     
     @BeforeAll
     static void setUp(){
-        valute = new Valute("numCode", "charCode", 5, "name", "value");
+        valute = new Valute("numCode", "charCode", 5, "name", "25.3");
     }
 
     @Test
@@ -35,6 +35,6 @@ class ValuteTest {
 
     @Test
     void getValue() {
-        assertEquals("value", valute.getValue());
+        assertEquals(25.3, valute.getValue());
     }
 }
