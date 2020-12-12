@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 public class CurrencyService {
-    private final static String apiBaseURL = "http://www.cbr.ru/scripts/XML_daily.asp?date_req=";
+    private static final String API_BASE_URL = "http://www.cbr.ru/scripts/XML_daily.asp?date_req=";
 
     private final ValCursRepository valCursRepository;
 
@@ -52,7 +52,7 @@ public class CurrencyService {
 
 
     private String createRequestString(LocalDate date) {
-        return apiBaseURL + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return API_BASE_URL + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     private Date localDateToDate(LocalDate date){
