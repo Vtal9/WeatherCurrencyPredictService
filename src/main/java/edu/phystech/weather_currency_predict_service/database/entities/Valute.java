@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,4 +62,21 @@ public class Valute implements Serializable {
     public Valute() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Valute valute = (Valute) o;
+        return nominal == valute.nominal &&
+                Objects.equals(id, valute.id) &&
+                Objects.equals(numCode, valute.numCode) &&
+                Objects.equals(charCode, valute.charCode) &&
+                Objects.equals(name, valute.name) &&
+                Objects.equals(value, valute.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, numCode, charCode, nominal, name, value);
+    }
 }
