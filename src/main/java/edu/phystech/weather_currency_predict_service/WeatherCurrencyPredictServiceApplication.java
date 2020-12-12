@@ -1,7 +1,6 @@
-package edu.phystech.weatherCurrencyPredictService;
+package edu.phystech.weather_currency_predict_service;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

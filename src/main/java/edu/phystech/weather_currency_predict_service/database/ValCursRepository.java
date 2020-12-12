@@ -1,10 +1,9 @@
-package edu.phystech.weatherCurrencyPredictService.DataBase;
+package edu.phystech.weather_currency_predict_service.database;
 
-import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.ValCurs;
+import edu.phystech.weather_currency_predict_service.database.entities.ValCurs;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 

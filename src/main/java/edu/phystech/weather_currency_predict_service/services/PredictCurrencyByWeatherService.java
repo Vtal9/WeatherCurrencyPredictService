@@ -1,6 +1,6 @@
-package edu.phystech.weatherCurrencyPredictService.Services;
+package edu.phystech.weather_currency_predict_service.services;
 
-import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.WeatherData;
+import edu.phystech.weather_currency_predict_service.database.entities.WeatherData;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,12 @@ public class PredictCurrencyByWeatherService {
     private final WeatherService weatherService;
     private final CurrencyService currencyService;
 
-    private final int PERIOD_SIZE_TO_FIT = 7;
+    private static final int PERIOD_SIZE_TO_FIT = 7;
 
     public PredictCurrencyByWeatherService(WeatherService weatherService, CurrencyService currencyService) {
         this.weatherService = weatherService;
         this.currencyService = currencyService;
-        model = new SimpleRegression();
+        model = new  SimpleRegression();
         fit();
     }
 
@@ -57,7 +57,6 @@ public class PredictCurrencyByWeatherService {
         res.add(xs);
         res.add(ys);
         return res;
-//        return List.of(xs, ys);
     }
 
     private double predict(WeatherData weatherData){

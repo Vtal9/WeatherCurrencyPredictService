@@ -1,4 +1,4 @@
-package edu.phystech.weatherCurrencyPredictService.DataBase.Entities;
+package edu.phystech.weather_currency_predict_service.database.entities;
 
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

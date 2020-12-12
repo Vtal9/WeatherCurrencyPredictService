@@ -1,4 +1,4 @@
-package edu.phystech.weatherCurrencyPredictService.DataBase.Entities;
+package edu.phystech.weather_currency_predict_service.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
@@ -27,22 +27,22 @@ public class ValCurs implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "Valute")
-    private List<Valute> ValuteList;
+    private List<Valute> valuteList;
 
     public List<Valute> getValuteList() {
-        return ValuteList;
+        return valuteList;
     }
 
     public ValCurs(List<Valute> valuteList) {
-        this.ValuteList = valuteList;
+        this.valuteList = valuteList;
     }
 
     public ValCurs() {
-        ValuteList = new ArrayList<>();
+        valuteList = new ArrayList<>();
     }
 
     public Valute getValute(String valuteName) {
-        for (Valute valute : ValuteList) {
+        for (Valute valute : valuteList) {
             if (valute.getName().equals(valuteName)) {
                 return valute;
             }

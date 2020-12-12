@@ -1,8 +1,8 @@
-package edu.phystech.weatherCurrencyPredictService.Services;
+package edu.phystech.weather_currency_predict_service.services;
 
 
-import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.ValCurs;
-import edu.phystech.weatherCurrencyPredictService.DataBase.ValCursRepository;
+import edu.phystech.weather_currency_predict_service.database.entities.ValCurs;
+import edu.phystech.weather_currency_predict_service.database.ValCursRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 public class CurrencyService {
-    private final String apiBaseURL = "http://www.cbr.ru/scripts/XML_daily.asp?date_req=";
+    private final static String apiBaseURL = "http://www.cbr.ru/scripts/XML_daily.asp?date_req=";
 
     private final ValCursRepository valCursRepository;
 
@@ -33,7 +33,7 @@ public class CurrencyService {
         for (int i = 0; i < n; ++i) {
             LocalDate day = today.minusDays(i);
 
-            Optional<ValCurs> valCurs = valCursRepository.findByDate(LocalDateToDate(day));
+            Optional<ValCurs> valCurs = valCursRepository.findByDate(localDateToDate(day));
             if (valCurs.isPresent()) {
                 currencyList.add(valCurs.get().getValute("Доллар США").getValue());
             } else {
@@ -42,7 +42,6 @@ public class CurrencyService {
                     currencyList.add(null);
                 } else {
                     currencyList.add(response.getBody().getValute("Доллар США").getValue());
-                    System.out.println(response.getBody());
                     valCursRepository.save(response.getBody());
                 }
             }
@@ -56,7 +55,7 @@ public class CurrencyService {
         return apiBaseURL + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    private Date LocalDateToDate(LocalDate date){
+    private Date localDateToDate(LocalDate date){
         return Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 

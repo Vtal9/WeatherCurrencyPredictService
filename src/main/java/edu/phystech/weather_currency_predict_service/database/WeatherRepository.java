@@ -1,6 +1,6 @@
-package edu.phystech.weatherCurrencyPredictService.DataBase;
+package edu.phystech.weather_currency_predict_service.database;
 
-import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.WeatherData;
+import edu.phystech.weather_currency_predict_service.database.entities.WeatherData;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

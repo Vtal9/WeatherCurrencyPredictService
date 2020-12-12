@@ -1,10 +1,10 @@
-package edu.phystech.weatherCurrencyPredictService.Services;
+package edu.phystech.weather_currency_predict_service.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.phystech.weatherCurrencyPredictService.DataBase.Entities.WeatherData;
-import edu.phystech.weatherCurrencyPredictService.DataBase.WeatherRepository;
+import edu.phystech.weather_currency_predict_service.database.entities.WeatherData;
+import edu.phystech.weather_currency_predict_service.database.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +21,10 @@ import java.util.Optional;
 
 @Service
 public class WeatherService {
-    private static final String apiKey = "8a9fee59aa08426bbd0164547202211";
-    private static final String apiBaseURL = "http://api.weatherapi.com/v1";
-    private static final String apiHistoryMethod = "/history.json";
-    private static final String apiForecastMethod = "/forecast.json";
+    private static final String API_KEY = "8a9fee59aa08426bbd0164547202211";
+    private static final String API_BASE_URL = "http://api.weatherapi.com/v1";
+    private static final String API_HISTORY_METHOD = "/history.json";
+    private static final String API_FORECAST_METHOD = "/forecast.json";
 
     private static final String DEFAULT_CITY = "Moscow";
 
@@ -55,12 +55,12 @@ public class WeatherService {
         for (int i = 0; i < n; ++i) {
             LocalDate day = today.minusDays(i);
 
-            Optional<WeatherData> weatherData = weatherRepository.findByDateAndCity(LocalDateToDate(day), city);
+            Optional<WeatherData> weatherData = weatherRepository.findByDateAndCity(localDateToDate(day), city);
             if (weatherData.isPresent()) {
                 weatherList.add(weatherData.get());
             } else {
                 ResponseEntity<String> response = restTemplate.getForEntity(createRequestString(day, city), String.class);
-                WeatherData weather = parseWeatherData(response, LocalDateToDate(day), city);
+                WeatherData weather = parseWeatherData(response, localDateToDate(day), city);
                 weatherList.add(weather);
                 weatherRepository.save(weather);
             }
@@ -79,12 +79,12 @@ public class WeatherService {
     }
 
     private String createRequestString(LocalDate date, String city) {
-        return apiBaseURL + apiHistoryMethod + "?key=" + apiKey + "&q=" + city + "&dt=" +
+        return API_BASE_URL + API_HISTORY_METHOD + "?key=" + API_KEY + "&q=" + city + "&dt=" +
                 date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     private String createForecastRequestString(String city) {
-        return apiBaseURL + apiForecastMethod + "?key=" + apiKey + "&q=" + city + "&days=1";
+        return API_BASE_URL + API_FORECAST_METHOD + "?key=" + API_KEY + "&q=" + city + "&days=1";
     }
 
     public WeatherData getForecastForTomorrow() {
@@ -97,10 +97,10 @@ public class WeatherService {
 
     public WeatherData getForecastData(String city) {
         ResponseEntity<String> response = restTemplate.getForEntity(createForecastRequestString(city), String.class);
-        return parseWeatherData(response, LocalDateToDate(LocalDate.now().plusDays(1)), city);
+        return parseWeatherData(response, localDateToDate(LocalDate.now().plusDays(1)), city);
     }
 
-    private Date LocalDateToDate(LocalDate date){
+    private Date localDateToDate(LocalDate date){
         return Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
