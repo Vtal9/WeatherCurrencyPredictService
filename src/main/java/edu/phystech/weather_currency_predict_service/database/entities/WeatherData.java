@@ -49,7 +49,6 @@ public class WeatherData {
     @Override
     public String toString() {
         return "WeatherData{" +
-                "id=" + id +
                 ", date=" + date +
                 ", maxTemperature=" + maxTemperature +
                 ", minTemperature=" + minTemperature +

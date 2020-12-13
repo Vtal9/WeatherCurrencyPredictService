@@ -49,4 +49,6 @@ class WeatherDataTest {
     void getCity() {
         assertEquals("city", weatherData.getCity());
     }
+
+
 }

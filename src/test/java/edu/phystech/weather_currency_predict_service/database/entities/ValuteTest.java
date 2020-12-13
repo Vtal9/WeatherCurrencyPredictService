@@ -37,4 +37,16 @@ class ValuteTest {
     void getValue() {
         assertEquals(25.3, valute.getValue());
     }
+
+    @Test
+    void testEquals() {
+        Valute newValute = new Valute("numCode", "charCode", 5, "name", "25.3");
+        assertTrue(newValute.equals(valute));
+    }
+
+    @Test
+    void testHashCode() {
+        Valute newValute = new Valute("numCode", "charCode", 5, "name", "25.3");
+        assertEquals(valute.hashCode(), newValute.hashCode());
+    }
 }
