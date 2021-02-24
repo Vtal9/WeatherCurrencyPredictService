@@ -1,0 +1,14 @@
+version: "3"
+services:
+  weatherservice:
+    image: weatherservice
+    ports:
+      - "8081:8081"
+  currencyservice:
+    image: currencyservice
+    ports:
+      - "8082:8082"
+  predict:
+    image: predictservice
+    ports:
+      - "8080:8080"
