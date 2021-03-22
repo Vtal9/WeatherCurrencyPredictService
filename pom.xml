@@ -84,6 +84,7 @@
     </build>
 
     <modules>
+        <module>EurikaServer</module>
         <module>WeatherService</module>
         <module>CurrencyService</module>
         <module>PredictService</module>

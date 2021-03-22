@@ -12,3 +12,7 @@ services:
     image: predictservice
     ports:
       - "8080:8080"
+  eurekaserver:
+    image: eurekaserver
+    ports:
+      - "8761:8761"

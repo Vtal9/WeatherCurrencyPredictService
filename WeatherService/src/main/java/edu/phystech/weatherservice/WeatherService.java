@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 public class WeatherService {
     private static final String API_KEY = "8a9fee59aa08426bbd0164547202211";

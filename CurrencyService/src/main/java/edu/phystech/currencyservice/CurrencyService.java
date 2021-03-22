@@ -34,26 +34,23 @@ public class CurrencyService {
         List<Double> currencyList = new ArrayList<>(n);
         for (int i = 0; i < n; ++i) {
             LocalDate day = today.minusDays(i);
-            try {
-                Optional<List<ValCurs>> valCurs = valCursRepository.findByDate(localDateToDate(day));
-                if (valCurs.isPresent()) {
-                    currencyList.add(valCurs.get().get(0).getValute("Доллар США").getValue());
+
+            Optional<List<ValCurs>> valCurs = valCursRepository.findByDate(localDateToDate(day));
+            if (valCurs.isPresent()) {
+                currencyList.add(valCurs.get().get(0).getValute("Доллар США").getValue());
+            } else {
+                System.out.println(currencyList.toString());
+                ResponseEntity<ValCurs> response = restTemplate.getForEntity(createRequestString(day), ValCurs.class);
+                System.out.println(day);
+                if (!response.hasBody()) {
+                    currencyList.add(null);
                 } else {
-                    System.out.println(currencyList.toString());
-                    ResponseEntity<ValCurs> response = restTemplate.getForEntity(createRequestString(day), ValCurs.class);
-                    System.out.println(day);
-                    if (!response.hasBody()) {
-                        currencyList.add(null);
-                    } else {
-                        currencyList.add(response.getBody().getValute("Доллар США").getValue());
-                        valCursRepository.save(response.getBody());
-                        System.out.println(valCursRepository.findByDate(localDateToDate(day)));
-                    }
+                    currencyList.add(response.getBody().getValute("Доллар США").getValue());
+                    valCursRepository.save(response.getBody());
+                    System.out.println(valCursRepository.findByDate(localDateToDate(day)));
                 }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                throw new NullPointerException();
             }
+
         }
 
         return currencyList;
