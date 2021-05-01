@@ -1,6 +1,6 @@
 package edu.phystech.currencyservice.database;
 
-import edu.phystech.currencyservice.database.entities.ValCurs;
+import edu.phystech.currencyservice.database.entities.Valcurs;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ValCursRepository extends CrudRepository<ValCurs, Long> {
-    Optional<List<ValCurs>> findByDate(Date date);
+public interface ValcursRepository extends CrudRepository<Valcurs, Long> {
+    Optional<List<Valcurs>> findByDate(Date date);
 }

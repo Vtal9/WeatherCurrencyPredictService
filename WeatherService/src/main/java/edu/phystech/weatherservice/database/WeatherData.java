@@ -11,12 +11,26 @@ public class WeatherData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "date")
     private Date date;
+
+    @Column(name = "max_temperature")
     private double maxTemperature;
+
+    @Column(name = "min_temperature")
     private double minTemperature;
+
+    @Column(name = "avg_temperature")
     private double avgTemperature;
+
+    @Column(name = "avg_humidity")
     private int avgHumidity;
+
+    @Column(name = "max_wind")
     private double maxWind;
+
+    @Column(name = "city")
     private String city;
 
     public WeatherData(Date date, double maxTemperature, double minTemperature, double avgTemperature, int avgHumidity, double maxWind, String city) {

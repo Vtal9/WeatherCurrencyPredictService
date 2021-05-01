@@ -11,21 +11,31 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Entity
-@Table(name = "Valute")
+@Table(name = "valute")
 @JacksonXmlRootElement(localName = "Valute")
 public class Valute implements Serializable {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "num_code", nullable = false)
     @JacksonXmlProperty(localName = "NumCode")
     private String numCode;
+
+    @Column(name = "char_code", nullable = false)
     @JacksonXmlProperty(localName = "CharCode")
     private String charCode;
+
+    @Column(name = "nominal", nullable = false)
     @JacksonXmlProperty(localName = "Nominal")
     private int nominal;
+
+    @Column(name = "name", nullable = false)
     @JacksonXmlProperty(localName = "Name")
     private String name;
+
+    @Column(name = "value", nullable = false)
     @JacksonXmlProperty(localName = "Value")
     private String value;
 

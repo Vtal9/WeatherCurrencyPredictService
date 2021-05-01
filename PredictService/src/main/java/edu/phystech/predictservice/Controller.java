@@ -1,5 +1,6 @@
 package edu.phystech.predictservice;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,8 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     private final PredictService predictCurrencyByWeatherService;
 
-
-    public Controller(PredictService predictCurrencyByWeatherService) {
+    public Controller(@Autowired PredictService predictCurrencyByWeatherService) {
         this.predictCurrencyByWeatherService = predictCurrencyByWeatherService;
     }
 

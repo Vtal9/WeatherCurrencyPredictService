@@ -12,32 +12,34 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "ValCurs")
+@Table(name = "Valcurs")
 @XmlRootElement(name = "ValCurs")
-public class ValCurs implements Serializable {
+public class Valcurs implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "date", nullable = false)
     @JacksonXmlProperty(localName = "Date", isAttribute = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private Date date;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="id")
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "Valute")
-    private List<Valute> valuteList;
+    private final List<Valute> valuteList;
 
     public List<Valute> getValuteList() {
         return valuteList;
     }
 
-    public ValCurs(List<Valute> valuteList) {
+    public Valcurs(List<Valute> valuteList) {
         this.valuteList = valuteList;
     }
 
-    public ValCurs() {
+    public Valcurs() {
         valuteList = new ArrayList<>();
     }
 

@@ -27,6 +27,7 @@ public class PredictService {
     public PredictService(RestTemplateBuilder restTemplateBuilder) {
         restTemplate = restTemplateBuilder.build();
         model = new SimpleRegression();
+        System.out.println("constructor succeeded");
     }
 
     public double predict() {
@@ -39,6 +40,7 @@ public class PredictService {
     }
 
     private void fit() {
+        System.out.println("fitting");
         ResponseEntity<double[]> weatherResponse = restTemplate.getForEntity(weatherURL, double[].class);
         ResponseEntity<double[]> currencyResponse = restTemplate.getForEntity(currencyURL, double[].class);
         if (weatherResponse.hasBody() && currencyResponse.hasBody()) {
