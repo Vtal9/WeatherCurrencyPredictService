@@ -4,6 +4,9 @@
   become: yes
 
   tasks:
+    - name: show dir
+      command: ls
+
     - name: build weatherservice image
       command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' WeatherService
 
