@@ -8,4 +8,4 @@
   currency_service_image_name : currencyservice
   predict_service_image_name : predictservice
   db_server : 194.87.111.112
-  deploy_path : edu/krasnovVV
+  deploy_path : /edu/krasnovVV
