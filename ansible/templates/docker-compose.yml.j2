@@ -1,11 +1,11 @@
 version: "3"
 services:
   eurekaserver:
-    image: "{{ images_prefix }}/{{ eureka_image_name }}"
+    image: "{{ eureka_image_name }}"
     ports:
       - "8761:8761"
   weatherservice:
-    image: "{{ images_prefix }}/{{ weather_service_image_name }}"
+    image: "{{ weather_service_image_name }}"
     ports:
       - "8081:8081"
     depends_on:
@@ -14,7 +14,7 @@ services:
       - JAVA_OPTS=
          -DB_SERVER=jdbc:postgresql://{{ db_server }}:5432/postgres
   currencyservice:
-    image: "{{ images_prefix }}/{{ currency_service_image_name }}"
+    image: "{{ currency_service_image_name }}"
     ports:
       - "8082:8082"
     depends_on:
@@ -23,7 +23,7 @@ services:
           - JAVA_OPTS=
              -DB_SERVER=jdbc:postgresql://{{ db_server }}:5432/postgres
   predict:
-    image: "{{ images_prefix }}/{{ predict_service_image_name }}"
+    image: "{{ predict_service_image_name }}"
     ports:
       - "8080:8080"
     depends_on:
