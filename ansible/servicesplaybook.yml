@@ -11,17 +11,17 @@
     - debug:
         var: output
 
-    - name: build weatherservice image
-      command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/WeatherService"
+    - name: pull weatherservice image
+      command: docker pull "{{ weather_service_image_name }}"
 
-    - name: build currency service image
-      command: docker build -t '{{ images_prefix }}/{{ currency_service_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/CurrecyService"
+    - name: pull currency service image
+      command: docker pull "{{ currency_service_image_name }}"
 
-    - name: build predict service image
-      command: docker build -t '{{ images_prefix }}/{{ predict_service_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/PredictService"
+    - name: pull predict service image
+      command: docker pull "{{ predict_service_image_name }}"
 
-    - name: build eureka server image
-      command: docker build -t '{{ images_prefix }}/{{ eureka_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/EurikaServer"
+    - name: pull eureka server image
+      command: docker pull "{{ eureka_image_name }}"
 
     - name: create docker-compose file
       template:
