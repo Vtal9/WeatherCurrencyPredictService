@@ -6,6 +6,10 @@
   tasks:
     - name: show dir
       command: ls
+      register: output
+
+    - debug:
+        var: output
 
     - name: build weatherservice image
       command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' WeatherService
