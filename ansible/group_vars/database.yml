@@ -1,0 +1,4 @@
+---
+  ansible_ssh_user : edumfti
+  ansible_ssh_pass : aNSHaPi1234
+  ansible_sudo_pass : aNSHaPi1234

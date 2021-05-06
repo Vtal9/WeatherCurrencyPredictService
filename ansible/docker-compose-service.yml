@@ -1,33 +1,24 @@
 version: "3"
 services:
-  postgres:
-    image: postgres
-    environment:
-      - POSTGRES_NAME=weather
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
   eurekaserver:
-    image: eurekaserver
+    image: vtal9/eurekaserver:latest
     ports:
       - "8761:8761"
+
   weatherservice:
-    image: weatherservice
+    image: vtal9/weatherservice:latest
     ports:
       - "8081:8081"
     depends_on:
       - eurekaserver
-      - postgres
   currencyservice:
-    image: currencyservice
+    image: vtal9/currencyservice:latest
     ports:
       - "8082:8082"
     depends_on:
       - eurekaserver
-      - postgres
   predict:
-    image: predictservice
+    image: vtal9/predictservice:latest
     ports:
       - "8080:8080"
     depends_on:

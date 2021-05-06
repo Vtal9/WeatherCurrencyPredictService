@@ -1,0 +1,26 @@
+---
+- name: servicesplaybook
+  hosts: services
+  become: yes
+
+  tasks:
+    - name: build weatherservice image
+      command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' ../WeatherService
+
+    - name: build currency service image
+      command: docker build -t '{{ images_prefix }}/{{ currency_service_image_name }}' ../CurrecyService
+
+    - name: build predict service image
+      command: docker build -t '{{ images_prefix }}/{{ predict_service_image_name }}' ../PredictService
+
+    - name: build eureka server image
+      command: docker build -t '{{ images_prefix }}/{{ eureka_image_name }}' ../EurikaServer
+
+    - name: create docker-compose file
+      template:
+        src: templates/docker-compose.yml.j2
+        dest: ../docker-compose.yml
+
+    - name: start services with docker-compose
+      docker-compose:
+        project_src: ../

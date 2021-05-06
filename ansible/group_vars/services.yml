@@ -1,0 +1,10 @@
+---
+  ansible_ssh_user : mftiedu
+  ansible_ssh_pass : cHONtic
+  ansible_sudo_pass : cHONtic
+  images_prefix : kvv
+  eureka_image_name : eurekaserver
+  weather_service_image_name : weatherservice
+  currency_service_image_name : currencyservice
+  predict_service_image_name : predictservice
+  db_server : 194.87.111.112

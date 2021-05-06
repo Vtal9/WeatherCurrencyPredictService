@@ -1,0 +1,4 @@
+[services]
+debian ansible_host=194.87.93.27
+[database]
+CentOs ansible_host=194.87.111.112
