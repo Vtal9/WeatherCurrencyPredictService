@@ -5,16 +5,16 @@
 
   tasks:
     - name: build weatherservice image
-      command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' ../WeatherService
+      command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' WeatherService
 
     - name: build currency service image
-      command: docker build -t '{{ images_prefix }}/{{ currency_service_image_name }}' ../CurrecyService
+      command: docker build -t '{{ images_prefix }}/{{ currency_service_image_name }}' CurrecyService
 
     - name: build predict service image
-      command: docker build -t '{{ images_prefix }}/{{ predict_service_image_name }}' ../PredictService
+      command: docker build -t '{{ images_prefix }}/{{ predict_service_image_name }}' PredictService
 
     - name: build eureka server image
-      command: docker build -t '{{ images_prefix }}/{{ eureka_image_name }}' ../EurikaServer
+      command: docker build -t '{{ images_prefix }}/{{ eureka_image_name }}' EurikaServer
 
     - name: create docker-compose file
       template:
