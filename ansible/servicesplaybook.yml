@@ -12,22 +12,22 @@
         var: output
 
     - name: build weatherservice image
-      command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' WeatherService
+      command: docker build -t '{{ images_prefix }}/{{ weather_service_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/WeatherService"
 
     - name: build currency service image
-      command: docker build -t '{{ images_prefix }}/{{ currency_service_image_name }}' CurrecyService
+      command: docker build -t '{{ images_prefix }}/{{ currency_service_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/CurrecyService"
 
     - name: build predict service image
-      command: docker build -t '{{ images_prefix }}/{{ predict_service_image_name }}' PredictService
+      command: docker build -t '{{ images_prefix }}/{{ predict_service_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/PredictService"
 
     - name: build eureka server image
-      command: docker build -t '{{ images_prefix }}/{{ eureka_image_name }}' EurikaServer
+      command: docker build -t '{{ images_prefix }}/{{ eureka_image_name }}' "{{ deploy_path }}/WeatherCurrencyPredictService/EurikaServer"
 
     - name: create docker-compose file
       template:
-        src: templates/docker-compose.yml.j2
-        dest: ../docker-compose.yml
+        src: "{{ deploy_path }}/WeatherCurrencyPredictService/ansible/templates/docker-compose.yml.j2"
+        dest: "{{ deploy_path }}/docker-compose.yml"
 
     - name: start services with docker-compose
       docker_compose:
-        project_src: ../
+        project_src: "{{ deploy_path }}"
