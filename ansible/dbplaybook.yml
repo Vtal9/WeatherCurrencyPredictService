@@ -8,6 +8,6 @@
         name: kvv-postgres
         image: postgres
         ports:
-          - "5432:5432"
+          - "80000:5432"
         env:
           POSTGRES_PASSWORD: "postgres"
