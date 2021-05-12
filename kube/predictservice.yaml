@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: predictservice
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: predictservice
+  template:
+    metadata:
+      name: predictservice
+      labels:
+        app: predictservice
+    spec:
+      containers:
+        - name: predictservice
+          image: vtal9/predictservice
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
